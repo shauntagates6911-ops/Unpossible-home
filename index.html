@@ -28,8 +28,8 @@
     </div>
     <div class="intro">
       <h2>Create games, animations, simulations and more in this online visual coding website!</h2>
-      <p>Zinc Coding is a visual coding website which allows older kids and teens to code their own dreams!<br/>
-      With the magic of PenguinMod, Zinc Coding has infinite possibilities, including 3D, blocks inside blocks, and more!</p>
+      <p>Unpossible is a visual coding website which allows older kids and teens to code their own apps!<br/>
+      With the magic of PenguinMod, Unpossible has infinite possibilities, including 3D, blocks inside blocks, and more!</p>
     </div>
     <div class="main">
       <h1>LATEST UPDATES</h1>
@@ -38,7 +38,32 @@
       <p>A new sound, Cut is available now! It is just a sound of scissors cutting something.</p>
       <button type="button" style="background-color: teal;" onclick="beat.play();">Click to hear the sound!</button>
       <h1>Recommended Projects to try</h1>
-      <p>Yet to come!</p>
+      <section id="community-projects" class="project-list"></section>
+
+<script>
+  // Load community projects
+  fetch("projects.json")
+    .then(res => res.json())
+    .then(projects => {
+      const container = document.getElementById("community-projects");
+
+      projects.forEach(p => {
+        const div = document.createElement("div");
+        div.className = "project";
+
+        div.innerHTML = `
+          <img src="${p.thumbnail}" class="thumbnail">
+          <h2>${p.name}</h2>
+          <p>${p.description}</p>
+          <a href="${p.url}" target="_blank" class="visit-btn">Visit</a>
+          <a href="${p.remix}" target="_blank" class="remix-btn">Remix</a>
+        `;
+
+        container.appendChild(div);
+      });
+    });
+</script>
+
     </div>
   </body>
 </html>
